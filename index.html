@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="Zh-Hant">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>RO-定位陷阱練習</title>
+</head>
+<body>
+	<style>
+		.grid:hover{
+			opacity:0.3;
+		}
+		.grid{
+			opacity:1;
+		}
+		.inlineDiv{
+			display:inline-block;
+			vertical-align:top;
+		}
+	</style>
+	<div id="map" class="inlineDiv"></div>
+	<div class="inlineDiv">
+		<input type="checkbox" id="aux" onchange="refreshAuxLine()" checked> 顯示怪物路徑輔助線
+		<p id="msg"></p>
+	</div>
+	<script src="main.js"></script>
+</body>
+</html>
