@@ -17,11 +17,31 @@
 			display:inline-block;
 			vertical-align:top;
 		}
+		#msg{
+			color:blue;
+		}
+		fieldset{
+			width:240px;
+			font-size:16px;
+		}
+		.fieldText{
+			color:gray;
+			font-size:0.9em;
+		}
 	</style>
 	<div id="map" class="inlineDiv"></div>
 	<div class="inlineDiv">
-		<input type="checkbox" id="aux" onchange="refreshAuxLine()" checked> 顯示怪物路徑輔助線
-		<p id="msg"></p>
+		<fieldset>
+			<legend>設定</legend>
+			<input type="checkbox" id="aux" onchange="refreshAuxLine()" checked> 顯示怪物路徑輔助線<br>
+			<input type="checkbox" id="area" onchange="refreshTrapArea()" checked> 顯示陷阱放置範圍
+			<p class="fieldText">(熟練後可以取消以上輔助功能練習)</p>
+		</fieldset>
+		<fieldset>
+			<legend>狀態</legend>
+			<p id="msg"></p>
+		</fieldset>
+		
 	</div>
 	<script src="main.js"></script>
 </body>

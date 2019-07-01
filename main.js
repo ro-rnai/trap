@@ -18,6 +18,7 @@ let map=document.getElementById('map');
 let mob; //魔物的 svg
 let trap;
 let auxLine;
+let area; //陷阱可放置區域輔助線
 let hint;
 let mobX,mobY; //魔物座標
 let trapX,trapY; //魔物座標
@@ -79,7 +80,31 @@ let timer=false;
 		});
 		return line;
 	})();
-	
+	area=(function(){
+		let path=svgCreate('path',{
+			transform:'translate('+14.5*cellWidth+','+14.5*cellWidth+')',
+			d:'M '+ -4.5*cellWidth+','+ -1.5*cellWidth + ' l '+([
+				cellWidth+',0 0,'+ -cellWidth,
+				cellWidth+',0 0,'+ -cellWidth,
+				cellWidth+',0 0,'+ -cellWidth,
+				3*cellWidth+',0',
+				'0,'+ cellWidth+' '+cellWidth+',0',
+				'0,'+ cellWidth+' '+cellWidth+',0',
+				'0,'+ cellWidth+' '+cellWidth+',0',
+				'0,'+ 3*cellWidth,
+				-cellWidth+',0 0,'+ cellWidth,
+				-cellWidth+',0 0,'+ cellWidth,
+				-cellWidth+',0 0,'+ cellWidth,
+				-3*cellWidth+',0',
+				'0,'+ -cellWidth+' '+ -cellWidth+',0',
+				'0,'+ -cellWidth+' '+ -cellWidth+',0',
+				'0,'+ -cellWidth+' '+ -cellWidth+',0',
+				'z'
+			].join(' '))
+			
+		});
+		return path;
+	})();
 	//人物
 	let hunter=(function(){
 		let group=svgCreate('g',{
@@ -154,6 +179,7 @@ let timer=false;
 		}));
 		return group;
 	})();
+	svg.appendChild(area);
 	svg.appendChild(trap);
 	svg.appendChild(auxLine);
 	svg.appendChild(mob);
@@ -175,6 +201,7 @@ function resetMobPos()
 	setElementPos(trap,-10,-10);
 	acttionLock=false;
 	refreshAuxLine();
+	refreshTrapArea();
 }
 function setElementPos(ele,x,y) {
 	
@@ -278,5 +305,15 @@ function refreshAuxLine()
 		auxLine.setAttributeNS(null,'style','stroke:#F0F;stroke-width:2px;stroke-dasharray:8,6;fill:none');
 	} else {
 		auxLine.setAttributeNS(null,'style','stroke:none;fill:none');
+	}
+}
+
+function refreshTrapArea()
+{
+	let ck=document.getElementById('area').checked;
+	if(ck) {
+		area.setAttributeNS(null,'style',"fill:none;stroke-width:2px;stroke:black");
+	} else {
+		area.setAttributeNS(null,'style','stroke:none;fill:none');
 	}
 }
