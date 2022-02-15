@@ -438,7 +438,7 @@ function run()
 		fill:'freeze',
 		path:getPathData(mobX,mobY,tmpP.x,tmpP.y,cellWidth)
 	});
-	ani.addEventListener('end',function(evt){
+	ani.onend=function(evt){
 		let touch=(Math.abs(tmpP.x-14)<2 && Math.abs(tmpP.y-14)<2)?true:false;
 		if(Math.abs(tmpP.x-trapX)<2 && Math.abs(tmpP.y-trapY)<2) {
 			msg.innerHTML=(touch?'<span style="color:red">被魔物碰到1下</span><br>':'')+'陷阱捕獲魔物';
@@ -451,7 +451,7 @@ function run()
 		setTimeout(function(){
 			resetMobPos();
 		},1000);
-	});
+	}
 	mob.setAttributeNS(null,'transform','translate('+0.5*cellWidth+' '+0.5*cellWidth+')');
 	mob.appendChild(ani).beginElement();
 }
